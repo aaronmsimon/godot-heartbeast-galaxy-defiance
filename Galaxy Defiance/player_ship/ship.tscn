@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnl4l4q8tq4sw"]
+[gd_scene load_steps=14 format=3 uid="uid://dnl4l4q8tq4sw"]
 
+[ext_resource type="Script" path="res://player_ship/Ship.cs" id="1_5b50s"]
 [ext_resource type="Texture2D" uid="uid://dwe8krwmvgaxt" path="res://assets/ship.png" id="1_6bvww"]
 [ext_resource type="Script" path="res://components/MoveComponent.cs" id="2_kakjb"]
 [ext_resource type="Script" path="res://components/MoveInputComponent.cs" id="3_e8s3w"]
 [ext_resource type="Resource" uid="uid://burlesyx78y1s" path="res://player_ship/ShipMoveStats.tres" id="4_7w4c6"]
 [ext_resource type="Script" path="res://components/PositionClampComponent.cs" id="5_ibbe2"]
+[ext_resource type="Script" path="res://components/SpawnerComponent.cs" id="7_hya4w"]
+[ext_resource type="PackedScene" uid="uid://bd0mk837bhgeu" path="res://projectiles/laser.tscn" id="8_ua6hy"]
+[ext_resource type="Script" path="res://components/ScaleComponent.cs" id="9_f5krx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bme3l"]
 atlas = ExtResource("1_6bvww")
@@ -46,6 +50,7 @@ animations = [{
 }]
 
 [node name="Ship" type="Node2D"]
+script = ExtResource("1_5b50s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dl7l3")
@@ -64,3 +69,21 @@ moveStats = ExtResource("4_7w4c6")
 [node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("5_ibbe2")
 actor = NodePath("..")
+
+[node name="LeftMuzzle" type="Marker2D" parent="."]
+position = Vector2(-5, -4)
+
+[node name="RightMuzzle" type="Marker2D" parent="."]
+position = Vector2(5, -4)
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("7_hya4w")
+scene = ExtResource("8_ua6hy")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_f5krx")
+sprite = NodePath("../AnimatedSprite2D")
