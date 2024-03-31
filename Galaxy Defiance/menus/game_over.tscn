@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://e5rphks4e2or"]
+[gd_scene load_steps=6 format=3 uid="uid://e5rphks4e2or"]
 
 [ext_resource type="Script" path="res://menus/GameOver.cs" id="1_uk1xw"]
 [ext_resource type="PackedScene" uid="uid://2y3orfbvdywa" path="res://effects/space_background.tscn" id="2_pj3hb"]
+[ext_resource type="Resource" uid="uid://b5dcuimd51boy" path="res://GameStats.tres" id="2_twq68"]
 [ext_resource type="LabelSettings" uid="uid://bgxd55k13rvp7" path="res://fonts/title_label_settings.tres" id="3_yj8t1"]
 [ext_resource type="LabelSettings" uid="uid://qtag76bu4ccg" path="res://fonts/default_label_settings.tres" id="4_to565"]
 
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uk1xw")
+gameStats = ExtResource("2_twq68")
 
 [node name="SpaceBackground" parent="." instance=ExtResource("2_pj3hb")]
 
@@ -32,6 +34,40 @@ layout_mode = 2
 text = "Game Over"
 label_settings = ExtResource("3_yj8t1")
 horizontal_alignment = 1
+
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/ScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Score:"
+label_settings = ExtResource("4_to565")
+
+[node name="ScoreValue" type="Label" parent="CenterContainer/VBoxContainer/ScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("4_to565")
+
+[node name="HighScoreHBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HighScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Highscore:"
+label_settings = ExtResource("4_to565")
+
+[node name="HighScoreValue" type="Label" parent="CenterContainer/VBoxContainer/HighScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("4_to565")
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
 [node name="MenuLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

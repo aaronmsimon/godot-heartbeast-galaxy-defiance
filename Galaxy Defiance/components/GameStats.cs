@@ -20,4 +20,6 @@ public partial class GameStats : Resource
             EmitSignal(SignalName.ScoreChanged, score);
         }
     }
+
+    public int HighScore { get; set; }
 }

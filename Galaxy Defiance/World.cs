@@ -22,6 +22,11 @@ public partial class World : Node2D
         };
     }
 
+    public override void _ExitTree()
+    {
+        gameStats.ScoreChanged -= UpdateScoreLabel;
+    }
+
     private void UpdateScoreLabel(int newScore)
     {
         scoreLabel.Text = "Score: " + newScore;
