@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb2snil7aod3j"]
+
+[ext_resource type="Script" path="res://Enemies/Enemy.cs" id="1_f7brc"]
+[ext_resource type="Script" path="res://components/StatsComponent.cs" id="1_uyfyc"]
+[ext_resource type="Script" path="res://components/MoveComponent.cs" id="2_41tkj"]
+[ext_resource type="Script" path="res://components/ScaleComponent.cs" id="3_j1vuo"]
+[ext_resource type="Script" path="res://components/FlashComponent.cs" id="4_yn5f2"]
+[ext_resource type="Script" path="res://components/ShakeComponent.cs" id="5_ieh2k"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_f7brc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("1_uyfyc")
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("2_41tkj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ScaleComponent" type="Node" parent="."]
+script = ExtResource("3_j1vuo")
+
+[node name="FlashComponent" type="Node" parent="."]
+script = ExtResource("4_yn5f2")
+
+[node name="ShakeComponent" type="Node" parent="."]
+script = ExtResource("5_ieh2k")
