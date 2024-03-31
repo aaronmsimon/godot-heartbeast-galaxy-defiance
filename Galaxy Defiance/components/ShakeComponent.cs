@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ShakeComponent : Node2D
+public partial class ShakeComponent : Node
 {
     // You should shake the sprite and not the root node or you'll get unexpected behavior since we are manipulating the position of the node and moving it to 0,0
 

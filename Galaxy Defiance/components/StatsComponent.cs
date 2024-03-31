@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class StatsComponent : Node2D
+public partial class StatsComponent : Node
 {
     // Create the health variable and connect a setter
     [Export] private int health = 1;
