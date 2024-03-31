@@ -30,4 +30,10 @@ public partial class HurtboxComponent : Area2D
     // Create a signal for when this hurtbox is hit by a hitbox
     [Signal]
     public delegate void HurtEventHandler(HitboxComponent hitbox);
+
+    // I can't figure out how to call a signal from another class
+    public void CallHurtEvent(HitboxComponent hitbox)
+    {
+        EmitSignal(SignalName.Hurt, hitbox);
+    }
 }

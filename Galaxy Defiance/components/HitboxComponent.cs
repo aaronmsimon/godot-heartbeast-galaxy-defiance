@@ -12,19 +12,19 @@ public partial class HitboxComponent : Area2D
     public override void _Ready()
     {
         // Connect on area entered to our hurtbox entered function
-        // AreaEntered += OnHurtboxEntered;
+        AreaEntered += OnHurtboxEntered;
     }
 
-    public void OnHurtboxEntered(HurtboxComponent hurtbox)
+    public void OnHurtboxEntered(Area2D area)
     {
         // Make sure the area we are overlapping is a hurtbox
-        if (hurtbox is not HurtboxComponent) return;
+        if (area is not HurtboxComponent) return;
         // Make sure the hurtbox isn't invincible
+        HurtboxComponent hurtbox = (HurtboxComponent)area;
         if (hurtbox.IsInvincible) return;
         // Signal out that we hit a hurtbox (this is useful for destroying projectiles when they hit something)
         EmitSignal(SignalName.HitHurtbox, hurtbox);
         // Have the hurtbox signal out that it was hit
-        EmitSignal(SignalName.Hurt);
-        // hurtbox.hurt.emit(self)
+        hurtbox.CallHurtEvent(this);
     }
 }

@@ -8,6 +8,8 @@ public partial class Enemy : Node2D
     private ScaleComponent scaleComponent;
     private FlashComponent flashComponent;
     private ShakeComponent shakeComponent;
+    private HurtboxComponent hurtboxComponent;
+    private HitboxComponent hitboxComponent;
 
     public override void _Ready()
     {
@@ -17,7 +19,12 @@ public partial class Enemy : Node2D
         scaleComponent = GetNode<ScaleComponent>("ScaleComponent");
         flashComponent = GetNode<FlashComponent>("FlashComponent");
         shakeComponent = GetNode<ShakeComponent>("ShakeComponent");
+        hurtboxComponent = GetNode<HurtboxComponent>("HurtboxComponent");
+        hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
 
         visibleOnScreenNotifier2D.ScreenExited += () => QueueFree();
+        hurtboxComponent.Hurt += (HitboxComponent) => {
+            QueueFree();
+        };
     }
 }
