@@ -10,6 +10,7 @@ public partial class Enemy : Node2D
     private ShakeComponent shakeComponent;
     private HurtboxComponent hurtboxComponent;
     private HitboxComponent hitboxComponent;
+    private DestroyedComponent destroyedComponent;
 
     public override void _Ready()
     {
@@ -21,14 +22,17 @@ public partial class Enemy : Node2D
         shakeComponent = GetNode<ShakeComponent>("ShakeComponent");
         hurtboxComponent = GetNode<HurtboxComponent>("HurtboxComponent");
         hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
+        destroyedComponent = GetNode<DestroyedComponent>("DestroyedComponent");
 
         visibleOnScreenNotifier2D.ScreenExited += () => QueueFree();
-        hurtboxComponent.Hurt += async (HitboxComponent) => {
+        hurtboxComponent.Hurt += async (hitboxComponent) => {
             scaleComponent.TweenScale();
             await flashComponent.Flash();
             shakeComponent.TweenShake();
         };
 
         statsComponent.NoHealth += () => QueueFree();
+
+        hitboxComponent.HitHurtbox += (hurtboxComponent) => destroyedComponent.Destroy();
     }
 }
