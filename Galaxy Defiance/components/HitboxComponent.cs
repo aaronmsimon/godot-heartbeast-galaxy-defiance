@@ -3,7 +3,19 @@ using Godot;
 public partial class HitboxComponent : Area2D
 {
     // Export the damage amount this hitbox deals
-    [Export] private float damage = 1f;
+    [Export] private int damage = 1;
+
+    public int Damage
+    {
+        get
+        {
+            return damage;
+        }
+        set
+        {
+            damage = value;
+        }
+    }
 
     // Create a signal for when the hitbox hits a hurtbox
     [Signal]

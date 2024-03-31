@@ -23,8 +23,12 @@ public partial class Enemy : Node2D
         hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
 
         visibleOnScreenNotifier2D.ScreenExited += () => QueueFree();
-        hurtboxComponent.Hurt += (HitboxComponent) => {
-            QueueFree();
+        hurtboxComponent.Hurt += async (HitboxComponent) => {
+            scaleComponent.TweenScale();
+            await flashComponent.Flash();
+            shakeComponent.TweenShake();
         };
+
+        statsComponent.NoHealth += () => QueueFree();
     }
 }
