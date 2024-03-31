@@ -11,7 +11,7 @@ public partial class PositionClampComponent : Node2D
     // Define the left and right borders to bounce on
     private int leftBorder = 0;
     // Use the display viewport width to get the right border of the screen
-    int rightBorder = (int)ProjectSettings.GetSetting("display/window/size/viewport_width");
+    private int rightBorder = (int)ProjectSettings.GetSetting("display/window/size/viewport_width");
 
     public override void _Process(double delta)
     {

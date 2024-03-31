@@ -6,6 +6,18 @@ public partial class SpawnerComponent : Node2D
     // The scene we want to spawn
     [Export] private PackedScene scene;
 
+    public PackedScene Scene
+    {
+        get
+        {
+            return scene;
+        }
+        set
+        {
+            scene = value;
+        }
+    }
+
     // Spawn an instance of the scene at a specific global position on a parent
     // By default the parent is the current "main" scene , but you can pass in an alternative parent if you so choose.
     public Node Spawn(Vector2? globalSpawnPosition = null, Node parent = null)
