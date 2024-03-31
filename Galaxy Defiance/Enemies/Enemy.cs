@@ -11,6 +11,7 @@ public partial class Enemy : Node2D
     private HurtboxComponent hurtboxComponent;
     private HitboxComponent hitboxComponent;
     private DestroyedComponent destroyedComponent;
+    private ScoreComponent scoreComponent;
 
     public override void _Ready()
     {
@@ -23,6 +24,11 @@ public partial class Enemy : Node2D
         hurtboxComponent = GetNode<HurtboxComponent>("HurtboxComponent");
         hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
         destroyedComponent = GetNode<DestroyedComponent>("DestroyedComponent");
+        scoreComponent = GetNode<ScoreComponent>("ScoreComponent");
+
+        statsComponent.NoHealth += () => {
+            scoreComponent.AdjustScore();
+        };
 
         visibleOnScreenNotifier2D.ScreenExited += () => QueueFree();
         hurtboxComponent.Hurt += async (hitboxComponent) => {
