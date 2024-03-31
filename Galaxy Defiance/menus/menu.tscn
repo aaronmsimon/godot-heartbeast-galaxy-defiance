@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbblehk6p3ocq"]
+
+[ext_resource type="Script" path="res://menus/Menu.cs" id="1_ycqde"]
+[ext_resource type="PackedScene" uid="uid://2y3orfbvdywa" path="res://effects/space_background.tscn" id="2_pwvas"]
+[ext_resource type="LabelSettings" uid="uid://bgxd55k13rvp7" path="res://fonts/title_label_settings.tres" id="3_8d8nt"]
+[ext_resource type="LabelSettings" uid="uid://qtag76bu4ccg" path="res://fonts/default_label_settings.tres" id="4_vfwgm"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ycqde")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("2_pwvas")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Galaxy Defiance"
+label_settings = ExtResource("3_8d8nt")
+horizontal_alignment = 1
+
+[node name="StartLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 'Space' to play"
+label_settings = ExtResource("4_vfwgm")
+horizontal_alignment = 1
