@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj2utc1jcesrg"]
+[gd_scene load_steps=7 format=3 uid="uid://bj2utc1jcesrg"]
 
 [ext_resource type="PackedScene" uid="uid://dnl4l4q8tq4sw" path="res://player_ship/ship.tscn" id="1_fqwgf"]
 [ext_resource type="Script" path="res://World.cs" id="1_tvl8j"]
 [ext_resource type="PackedScene" uid="uid://2y3orfbvdywa" path="res://effects/space_background.tscn" id="2_jycjt"]
 [ext_resource type="Resource" uid="uid://b5dcuimd51boy" path="res://GameStats.tres" id="2_y43go"]
-[ext_resource type="PackedScene" uid="uid://dnieafmglee5e" path="res://Enemies/green_enemy.tscn" id="3_extir"]
 [ext_resource type="PackedScene" uid="uid://bahpr20jbc5eh" path="res://Enemies/enemy_generator.tscn" id="3_ll311"]
 [ext_resource type="LabelSettings" uid="uid://qtag76bu4ccg" path="res://fonts/default_label_settings.tres" id="6_bcq8s"]
 
@@ -19,7 +18,6 @@ position = Vector2(80, 216)
 [node name="SpaceBackground" parent="." instance=ExtResource("2_jycjt")]
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_ll311")]
-greenEnemyScene = ExtResource("3_extir")
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_right = 160.0

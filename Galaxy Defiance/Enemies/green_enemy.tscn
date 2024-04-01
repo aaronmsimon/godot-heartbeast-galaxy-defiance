@@ -3,33 +3,33 @@
 [ext_resource type="PackedScene" uid="uid://bb2snil7aod3j" path="res://Enemies/enemy.tscn" id="1_hfxyd"]
 [ext_resource type="Texture2D" uid="uid://cnhkh2wqtnjil" path="res://assets/green_enemy.png" id="2_kk7qc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_535ys"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hefra"]
 atlas = ExtResource("2_kk7qc")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k4c5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3kk0"]
 atlas = ExtResource("2_kk7qc")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8r1ii"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1ihy"]
 atlas = ExtResource("2_kk7qc")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4x4pd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ol3s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_535ys")
+"texture": SubResource("AtlasTexture_hefra")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7k4c5")
+"texture": SubResource("AtlasTexture_s3kk0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8r1ii")
+"texture": SubResource("AtlasTexture_g1ihy")
 }],
 "loop": true,
-"name": &"move",
-"speed": 5.0
+"name": &"default",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebwp2"]
@@ -40,23 +40,19 @@ radius = 6.0
 
 [node name="GreenEnemy" instance=ExtResource("1_hfxyd")]
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_4x4pd")
-animation = &"move"
-autoplay = "move"
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_7ol3s")
+autoplay = "default"
 
-[node name="StatsComponent" parent="." index="1"]
-health = 3
-
-[node name="MoveComponent" parent="." index="2"]
+[node name="MoveComponent" parent="." index="3"]
 velocity = Vector2(0, 40)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 position = Vector2(4.17233e-07, 4.17233e-07)
 scale = Vector2(0.8, 0.8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+[node name="HurtboxComponent#HurtboxComponent#CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("CircleShape2D_ebwp2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+[node name="HitboxComponent#HitboxComponent#CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 shape = SubResource("CircleShape2D_oqq1p")

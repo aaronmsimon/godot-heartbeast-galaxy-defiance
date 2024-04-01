@@ -16,6 +16,8 @@
 [ext_resource type="Resource" uid="uid://b5dcuimd51boy" path="res://GameStats.tres" id="14_bl663"]
 
 [node name="Enemy" type="Node2D"]
+
+[node name="Logic" type="Node2D" parent="."]
 script = ExtResource("1_f7brc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

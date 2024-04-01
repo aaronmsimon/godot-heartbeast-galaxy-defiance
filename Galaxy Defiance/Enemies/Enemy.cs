@@ -2,29 +2,29 @@ using Godot;
 
 public partial class Enemy : Node2D
 {
-    private StatsComponent statsComponent;
-    private MoveComponent moveComponent;
-    private VisibleOnScreenNotifier2D visibleOnScreenNotifier2D;
-    private ScaleComponent scaleComponent;
-    private FlashComponent flashComponent;
-    private ShakeComponent shakeComponent;
-    private HurtboxComponent hurtboxComponent;
-    private HitboxComponent hitboxComponent;
-    private DestroyedComponent destroyedComponent;
-    private ScoreComponent scoreComponent;
+    protected StatsComponent statsComponent;
+    protected MoveComponent moveComponent;
+    protected VisibleOnScreenNotifier2D visibleOnScreenNotifier2D;
+    protected ScaleComponent scaleComponent;
+    protected FlashComponent flashComponent;
+    protected ShakeComponent shakeComponent;
+    protected HurtboxComponent hurtboxComponent;
+    protected HitboxComponent hitboxComponent;
+    protected DestroyedComponent destroyedComponent;
+    protected ScoreComponent scoreComponent;
 
     public override void _Ready()
     {
-        statsComponent = GetNode<StatsComponent>("StatsComponent");
-        moveComponent = GetNode<MoveComponent>("MoveComponent");
-        visibleOnScreenNotifier2D = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
-        scaleComponent = GetNode<ScaleComponent>("ScaleComponent");
-        flashComponent = GetNode<FlashComponent>("FlashComponent");
-        shakeComponent = GetNode<ShakeComponent>("ShakeComponent");
-        hurtboxComponent = GetNode<HurtboxComponent>("HurtboxComponent");
-        hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
-        destroyedComponent = GetNode<DestroyedComponent>("DestroyedComponent");
-        scoreComponent = GetNode<ScoreComponent>("ScoreComponent");
+        statsComponent = GetParent().GetNode<StatsComponent>("StatsComponent");
+        moveComponent = GetParent().GetNode<MoveComponent>("MoveComponent");
+        visibleOnScreenNotifier2D = GetParent().GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+        scaleComponent = GetParent().GetNode<ScaleComponent>("ScaleComponent");
+        flashComponent = GetParent().GetNode<FlashComponent>("FlashComponent");
+        shakeComponent = GetParent().GetNode<ShakeComponent>("ShakeComponent");
+        hurtboxComponent = GetParent().GetNode<HurtboxComponent>("HurtboxComponent");
+        hitboxComponent = GetParent().GetNode<HitboxComponent>("HitboxComponent");
+        destroyedComponent = GetParent().GetNode<DestroyedComponent>("DestroyedComponent");
+        scoreComponent = GetParent().GetNode<ScoreComponent>("ScoreComponent");
 
         statsComponent.NoHealth += () => {
             scoreComponent.AdjustScore();

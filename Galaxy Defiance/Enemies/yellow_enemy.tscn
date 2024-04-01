@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkw0lho7isb3c"]
+
+[ext_resource type="PackedScene" uid="uid://bb2snil7aod3j" path="res://Enemies/enemy.tscn" id="1_yxxru"]
+[ext_resource type="Script" path="res://Enemies/YellowEnemy.cs" id="2_5ogso"]
+[ext_resource type="Texture2D" uid="uid://4eeu0nlguol7" path="res://assets/yellow_enemy.png" id="2_e8jl7"]
+[ext_resource type="Script" path="res://components/BorderBounceComponent.cs" id="4_fuet8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76mec"]
+atlas = ExtResource("2_e8jl7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pvls"]
+atlas = ExtResource("2_e8jl7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqhr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76mec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pvls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3us6"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5vo2"]
+size = Vector2(10, 8)
+
+[node name="YellowEnemy" instance=ExtResource("1_yxxru")]
+
+[node name="Logic" parent="." index="0"]
+script = ExtResource("2_5ogso")
+horizontalSpeed = 20
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_aqhr4")
+autoplay = "default"
+
+[node name="StatsComponent" parent="." index="2"]
+health = 6
+
+[node name="MoveComponent" parent="." index="3"]
+velocity = Vector2(0, 20)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(4.17233e-07, 0)
+scale = Vector2(0.8, 0.6)
+
+[node name="HurtboxComponent#HurtboxComponent#CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_w3us6")
+
+[node name="HitboxComponent#HitboxComponent#CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_s5vo2")
+debug_color = Color(0.886275, 0.235294, 0.592157, 0.419608)
+
+[node name="ScoreComponent" parent="." index="13"]
+adjustAmount = 10
+
+[node name="BorderBounceComponent" type="Node" parent="." index="14" node_paths=PackedStringArray("actor", "moveComponent")]
+script = ExtResource("4_fuet8")
+margin = 8
+actor = NodePath("..")
+moveComponent = NodePath("../MoveComponent")
