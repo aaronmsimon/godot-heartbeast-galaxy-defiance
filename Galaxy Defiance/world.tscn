@@ -19,6 +19,7 @@ position = Vector2(80, 216)
 [node name="SpaceBackground" parent="." instance=ExtResource("2_jycjt")]
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_ll311")]
+pinkEnemyScene = ExtResource("7_ssc3l")
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_right = 160.0
@@ -27,6 +28,3 @@ text = "SCORE"
 label_settings = ExtResource("6_bcq8s")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="PinkEnemy" parent="." instance=ExtResource("7_ssc3l")]
-position = Vector2(48, 48)

@@ -44,6 +44,9 @@ radius = 6.0
 sprite_frames = SubResource("SpriteFrames_7ol3s")
 autoplay = "default"
 
+[node name="StatsComponent" parent="." index="2"]
+health = 3
+
 [node name="MoveComponent" parent="." index="3"]
 velocity = Vector2(0, 40)
 

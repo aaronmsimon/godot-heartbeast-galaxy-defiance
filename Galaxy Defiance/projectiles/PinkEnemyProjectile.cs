@@ -1,21 +1,18 @@
 using Godot;
 
-public partial class Laser : Node2D
+public partial class PinkEnemyProjectile : Node2D
 {
+    private HitboxComponent hitboxComponent;
     private VisibleOnScreenNotifier2D visibleOnScreenNotifier2D;
     private ScaleComponent scaleComponent;
-    private FlashComponent flashComponent;
-    private HitboxComponent hitboxComponent;
 
-    public override async void _Ready()
+    public override void _Ready()
     {
+        hitboxComponent = GetNode<HitboxComponent>("Anchor/HitboxComponent");
         visibleOnScreenNotifier2D = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
         scaleComponent = GetNode<ScaleComponent>("ScaleComponent");
-        flashComponent = GetNode<FlashComponent>("FlashComponent");
-        hitboxComponent = GetNode<HitboxComponent>("HitboxComponent");
 
         scaleComponent.TweenScale();
-        await flashComponent.Flash();
         visibleOnScreenNotifier2D.ScreenExited += QueueFree;
         hitboxComponent.HitHurtbox += (HurtboxComponent hurtbox) => QueueFree();
     }

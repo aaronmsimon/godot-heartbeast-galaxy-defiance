@@ -28,4 +28,9 @@ public partial class StateComponent : Node
         // We use inheirt so this node will still pause if the game is paused or a parent is disabled
         ProcessMode = ProcessModeEnum.Inherit;
     }
+
+    public void StateFinish()
+    {
+        EmitSignal(SignalName.StateFinished);
+    }
 }

@@ -10,6 +10,8 @@ public partial class PinkEnemy : Enemy
     private TimedStateComponent moveSideState;
     private TimedStateComponent pauseState;
     private MoveComponent moveSideComponent;
+    private StateComponent fireState;
+    private SpawnerComponent projectileSpawnerComponent;
 
     public override void _Ready()
     {
@@ -20,8 +22,10 @@ public partial class PinkEnemy : Enemy
         moveSideState = GetParent().GetNode<TimedStateComponent>("%MoveSideState");
         pauseState = GetParent().GetNode<TimedStateComponent>("%PauseState");
         moveSideComponent = GetParent().GetNode<MoveComponent>("%MoveSideComponent");
+        fireState = GetParent().GetNode<StateComponent>("%FireState");
+        projectileSpawnerComponent = GetParent().GetNode<SpawnerComponent>("%ProjectileSpawnerComponent");
 
-        foreach (TimedStateComponent state in states.GetChildren())
+        foreach (StateComponent state in states.GetChildren())
         {
             state.Disable();
         }
@@ -30,7 +34,14 @@ public partial class PinkEnemy : Enemy
         moveSideComponent.velocity.X = (rand.NextDouble() - .5f) < 0 ? -horizontalSpeed : horizontalSpeed;
 
         moveDownState.StateFinished += () => moveSideState.Enable();
-        moveSideState.StateFinished += () => pauseState.Enable();
+        moveSideState.StateFinished += () => {
+            fireState.Enable();
+            scaleComponent.TweenScale();
+            projectileSpawnerComponent.Spawn(GlobalPosition);
+            fireState.Disable();
+            fireState.StateFinish();
+        };
+        fireState.StateFinished += () => pauseState.Enable();
         pauseState.StateFinished += () => moveDownState.Enable();
 
         moveDownState.Enable();
