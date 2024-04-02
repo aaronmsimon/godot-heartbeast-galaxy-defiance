@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb2snil7aod3j"]
+[gd_scene load_steps=17 format=3 uid="uid://bb2snil7aod3j"]
 
 [ext_resource type="Script" path="res://Enemies/Enemy.cs" id="1_f7brc"]
 [ext_resource type="Script" path="res://components/StatsComponent.cs" id="1_uyfyc"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://components/DestroyedComponent.cs" id="12_05cvh"]
 [ext_resource type="Script" path="res://components/ScoreComponent.cs" id="13_5n38p"]
 [ext_resource type="Resource" uid="uid://b5dcuimd51boy" path="res://GameStats.tres" id="14_bl663"]
+[ext_resource type="AudioStream" uid="uid://b1xghgopw072l" path="res://sounds/hit_sound.wav" id="15_8nx1g"]
+[ext_resource type="Script" path="res://components/VariablePitchAudioStreamPlayer.cs" id="16_osful"]
 
 [node name="Enemy" type="Node2D"]
 
@@ -70,3 +72,9 @@ destroyEffectSpawnerComponent = NodePath("../SpawnerComponent")
 [node name="ScoreComponent" type="Node" parent="."]
 script = ExtResource("13_5n38p")
 gameStats = ExtResource("14_bl663")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_8nx1g")
+volume_db = 5.0
+bus = &"SoundFX"
+script = ExtResource("16_osful")

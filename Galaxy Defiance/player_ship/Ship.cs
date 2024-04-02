@@ -10,6 +10,7 @@ public partial class Ship : Node2D
     private AnimatedSprite2D shipSprite;
     private MoveComponent moveComponent;
     private AnimatedSprite2D flameSprite;
+    private VariablePitchAudioStreamPlayer variablePitchAudioStreamPlayer;
 
     public override void _Ready()
     {
@@ -21,6 +22,7 @@ public partial class Ship : Node2D
         shipSprite = GetNode<AnimatedSprite2D>("Anchor/ShipSprite");
         moveComponent = GetNode<MoveComponent>("MoveComponent");
         flameSprite = GetNode<AnimatedSprite2D>("Anchor/FlameAnimatedSprite");
+        variablePitchAudioStreamPlayer = GetNode<VariablePitchAudioStreamPlayer>("VariablePitchAudioStreamPlayer");
 
         fireRateTimer.Timeout += FireLasers;
     }
@@ -32,6 +34,8 @@ public partial class Ship : Node2D
 
     private void FireLasers()
     {
+        variablePitchAudioStreamPlayer.PlayWithVariance();
+        
         spawnerComponent.Spawn(leftMuzzle.GlobalPosition);
         spawnerComponent.Spawn(rightMuzzle.GlobalPosition);
 

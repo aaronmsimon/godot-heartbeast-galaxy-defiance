@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using System.Diagnostics;
 
 public partial class EnemyGenerator : Node2D
 {
@@ -35,16 +36,18 @@ public partial class EnemyGenerator : Node2D
         yellowEnemySpawnTimer.Timeout += () => HandleSpawn(yellowEnemyScene, yellowEnemySpawnTimer, 5f);
         pinkEnemySpawnTimer.Timeout += () => HandleSpawn(pinkEnemyScene, pinkEnemySpawnTimer, 10f);
 
-        gameStats.ScoreChanged += (int newScore) => {
-            if (newScore > yellowMinScore)
-            {
-                yellowEnemySpawnTimer.ProcessMode = ProcessModeEnum.Inherit;
-            }
-            if (newScore > pinkMinScore)
-            {
-                pinkEnemySpawnTimer.ProcessMode = ProcessModeEnum.Inherit;
-            }
-        };
+        gameStats.ScoreChanged += (int newScore) => enemySpawnLogicEventHandler(newScore);
+    }
+
+    // public override void _ExitTree()
+    // {
+    //     gameStats.ScoreChanged -= enemySpawnLogicEventHandler;
+    // }
+ 
+    protected override void Dispose(bool disposing)
+    {
+        gameStats.ScoreChanged -= enemySpawnLogicEventHandler;
+        base.Dispose(disposing);
     }
 
     private void HandleSpawn(PackedScene enemyScene, Timer timer, float timeOffset = 1f)
@@ -52,7 +55,19 @@ public partial class EnemyGenerator : Node2D
         spawnerComponent.Scene = enemyScene;
         spawnerComponent.Spawn(new Vector2(GD.RandRange(margin, screenWidth - margin), -topMargin));
 
-        float spawnRate = timeOffset / (0.5f + (gameStats.Score * 0.01f)); // demonstrated with Desmos.com
+        float spawnRate = timeOffset / (0.5f + (gameStats.Score * 0.01f)); // demonstrated with http://www.desmos.com
         timer.Start(spawnRate + GD.RandRange(0.25f, 0.5f));
+    }
+
+    private void enemySpawnLogicEventHandler(int newScore)
+    {
+        if (newScore > yellowMinScore)
+        {
+            yellowEnemySpawnTimer.ProcessMode = ProcessModeEnum.Inherit;
+        }
+        if (newScore > pinkMinScore)
+        {
+            pinkEnemySpawnTimer.ProcessMode = ProcessModeEnum.Inherit;
+        }
     }
 }

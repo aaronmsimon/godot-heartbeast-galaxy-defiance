@@ -12,6 +12,7 @@ public partial class Enemy : Node2D
     protected HitboxComponent hitboxComponent;
     protected DestroyedComponent destroyedComponent;
     protected ScoreComponent scoreComponent;
+    protected VariablePitchAudioStreamPlayer variablePitchAudioStreamPlayer;
 
     public override void _Ready()
     {
@@ -25,6 +26,7 @@ public partial class Enemy : Node2D
         hitboxComponent = GetParent().GetNode<HitboxComponent>("HitboxComponent");
         destroyedComponent = GetParent().GetNode<DestroyedComponent>("DestroyedComponent");
         scoreComponent = GetParent().GetNode<ScoreComponent>("ScoreComponent");
+        variablePitchAudioStreamPlayer = GetParent().GetNode<VariablePitchAudioStreamPlayer>("VariablePitchAudioStreamPlayer");
 
         statsComponent.NoHealth += () => {
             scoreComponent.AdjustScore();
@@ -35,6 +37,7 @@ public partial class Enemy : Node2D
             scaleComponent.TweenScale();
             await flashComponent.Flash();
             shakeComponent.TweenShake();
+            variablePitchAudioStreamPlayer.PlayWithVariance();
         };
 
         statsComponent.NoHealth += () => QueueFree();

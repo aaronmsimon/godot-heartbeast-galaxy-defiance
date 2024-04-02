@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://b5dcuimd51boy" path="res://GameStats.tres" id="5_m4onc"]
 
 [node name="EnemyGenerator" type="Node2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_34172")
 greenEnemyScene = ExtResource("2_uucgs")
 yellowEnemyScene = ExtResource("3_4apwa")
